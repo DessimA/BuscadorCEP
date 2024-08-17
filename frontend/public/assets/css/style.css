@@ -1,0 +1,160 @@
+/* Variáveis CSS */
+:root {
+    --cor-principal: #283747;
+    --cor-secundaria: #c5c8e6;
+    --cor-destaque: #2196F3; 
+    --cor-texto: #333;
+    --cor-erro: #C0392B;
+  }
+  
+  /* Estilos Gerais */
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-texto);
+    overflow-x: hidden; 
+  }
+  
+  /* Cabeçalho */
+  header {
+    position: fixed; /* Fixo na parte superior */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--cor-principal);
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    box-sizing: border-box;
+    z-index: 10; 
+  }
+  
+  .logo {
+    display: block;
+    margin: 0 auto;
+    height: 30px; 
+  }
+  
+  .logo img {
+    height: 100%;
+  }
+  
+  /* Container Principal */
+  .container {
+    width: 90%;
+    max-width: 500px;
+    margin: 90px auto 70px auto; /* Espaço para header e footer */
+    padding: 20px; 
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Habilita rolagem vertical se necessário */
+    overflow-y: auto; 
+  }
+  
+  /* Título */
+  h1 {
+    text-align: center;
+    margin-bottom: 30px; 
+    color: var(--cor-principal);
+  }
+  
+  /* Formulário */
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box; 
+    border: 1px solid #ccc;
+    padding: 20px; 
+    border-radius: 8px;
+  }
+  
+  label {
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  
+  input[type="text"] {
+    padding: 12px; 
+    border: 1px solid #ddd; 
+    border-radius: 6px; 
+    margin-bottom: 20px; 
+    font-size: 16px;
+    box-sizing: border-box;
+    width: 100%; 
+  }
+  
+  button {
+    padding: 12px 20px;     
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: var(--cor-destaque); 
+    transition: background-color 0.3s ease, transform 0.1s ease;
+  }
+  
+  /* Cor mais escura para o botão ao passar o mouse */
+  button:hover {
+    background-color: #1976D2; /* Substitua pela cor desejada */
+    transform: scale(1.05);
+  }
+  
+  /* Resultados */
+  .endereco-info {
+    margin-top: 30px; 
+  }
+  
+  .endereco-info p {
+    margin-bottom: 8px; 
+  }
+  
+  /* Mensagem de Erro */
+  .error-message {
+    color: var(--cor-erro);
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  /* Rodapé */
+  footer {
+    position: fixed; /* Fixo na parte inferior */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--cor-principal);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box; 
+    z-index: 10;
+  }
+  
+  footer a {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  
+  footer img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 320px) { /* Estilos para smartwatch */
+    .container {
+      margin: 70px auto 50px auto;
+      padding: 10px;
+    }
+  
+    input[type="text"],
+    button {
+      font-size: 12px; 
+    }
+  }
