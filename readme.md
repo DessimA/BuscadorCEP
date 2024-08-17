@@ -1,80 +1,48 @@
 ## 🗺️ Buscador de CEP 🗺️
 
-Este projeto em Java implementa uma aplicação de console para consultar endereços a partir de CEPs utilizando a API ViaCEP. 💻  A aplicação utiliza alguns padrões de projeto GoF (Gang of Four) para organizar e estruturar o código de forma mais eficiente. ✨
+Este projeto é uma aplicação web completa para consultar endereços a partir de CEPs, utilizando a API ViaCEP. Ele combina um backend Java com um frontend Node.js, garantindo uma experiência de usuário moderna e eficiente. 🚀
 
 ### Descrição
 
-A aplicação "Buscador de CEP" é uma ferramenta simples de linha de comando que permite consultar informações de endereço com base em um CEP (Código de Endereçamento Postal) fornecido pelo usuário. 🔎 Ela utiliza a API ViaCEP para obter os dados e exibi-los no console. 🖥️
+O Buscador de CEP oferece uma interface intuitiva para consultar endereços brasileiros, tornando a tarefa de encontrar informações completas sobre um CEP mais rápida e simples. 🎉 Você pode acessar a aplicação [aqui](https://frontend-buscacep.up.railway.app/).
 
-### Conceitos Aplicados
+### Arquitetura
 
-O projeto utiliza os seguintes padrões de projeto GoF:
+O projeto é dividido em duas partes principais:
 
-* **Singleton:** 🔐 Garante a existência de apenas uma instância da classe HttpClient para realizar as requisições HTTP, evitando a criação de múltiplas conexões com a API e otimizando o uso de recursos. 
-* **Facade:** 🏢 A classe ConsultaCepFacade atua como uma fachada simplificada para o serviço de consulta de CEP, ocultando os detalhes de implementação e fornecendo uma interface mais amigável para a camada de apresentação. 
-* **Factory Method:** 🔨 A classe HttpClientFactory é responsável por criar e retornar instâncias de HttpClient por meio do método factory getHttpClient(), permitindo a criação de diferentes tipos de clientes HTTP sem modificar o código principal.
+**Backend (Java):**
 
-### Requisitos
+* **API REST:** Implementada em `backend/`, a API é responsável por realizar as consultas à API ViaCEP e retornar os dados formatados para o frontend. A API foi desenvolvida com Spring Boot, utilizando o `RestTemplate` para fazer as requisições HTTP à API externa. Para facilitar a leitura e configuração, a URL da API ViaCEP é armazenada em um arquivo `.env` que é carregado por meio da classe `ConfigurationProvider`.
+* **Padrões de Projeto:** Utiliza o padrão Singleton para gerenciar o `HttpClient` e o padrão Facade para encapsular a lógica de consulta da API. O `HttpClientSingleton` garante que apenas uma instância da classe `HttpClient` seja criada, evitando a criação de múltiplas conexões e otimizando o uso de recursos. A classe `ConsultaCepFacade` atua como uma fachada, simplificando a interface para a camada de apresentação, ocultando os detalhes de implementação da consulta.
 
-Para executar esta aplicação, você precisará ter os seguintes componentes instalados:
+**Frontend (Node.js):**
 
-* **Java Development Kit (JDK) 17 ou superior** ☕
-* **Apache Maven** 📦
+* **Interface do Usuário:** Implementada em `frontend/`, a interface foi criada com Express e utiliza o motor de templates EJS para renderizar as páginas HTML. O código JavaScript interage com a API do backend por meio da função `fetch`, enviando o CEP digitado pelo usuário e recebendo os dados do endereço.
+* **Comunicação com a API:** Utiliza `fetch` para realizar requisições à API REST do backend Java e renderizar os dados na tela.
 
-### Execução
+### Recursos
 
-1. **Clone o repositório do projeto em sua máquina local.** ⬇️
-2. **Navegue até o diretório raiz do projeto.** 📁
-3. **Compile o projeto usando o Maven:** `mvn clean install` 🔨
-4. **Execute a aplicação com o seguinte comando:** `mvn exec:java -Dexec.mainClass="org.buscador.cep.ConsultaCepApplication"` 🚀
-5. **Após a execução, a aplicação solicitará que você digite um CEP. Digite o CEP desejado e pressione Enter.**  ⌨️ A aplicação consultará a API ViaCEP e exibirá as informações de endereço correspondentes ao CEP fornecido. 
-6. **Para encerrar a aplicação, digite "sair" quando solicitado o CEP.** 🚪
+* **Consulta de CEP:** Insira um CEP válido e obtenha informações detalhadas do endereço correspondente.
+* **Interface Intuitiva:** Uma interface simples e amigável facilita o processo de consulta.
+* **Resposta rápida:** Obtenha os dados do endereço rapidamente, com base na API ViaCEP.
 
-### Estrutura do Projeto
+### Como Usar
 
-```
-BuscadorCep/
-├── pom.xml
-└── src/
-    └── main/
-        ├── java/
-        │   └── org/
-        │       └── buscador/
-        │           └── cep/
-        │               ├── ConsultaCepApplication.java
-        │               ├── config/
-        │               │   └── ConfigurationProvider.java
-        │               ├── controller/
-        │               │   └── ConsultaCepController.java
-        │               ├── facade/
-        │               │   └── ConsultaCepFacade.java
-        │               ├── factory/
-        │               │   └── HttpClientFactory.java
-        │               ├── model/
-        │               │   └── EnderecoResponse.java
-        │               └── singleton/
-        │                   └── HttpClientSingleton.java
-        └── resources/
-            └── env
-```
+1. **Acesse a aplicação:** Clique no link [https://frontend-buscacep.up.railway.app/](https://frontend-buscacep.up.railway.app/) para acessar a aplicação web.
+2. **Insira o CEP:** Digite o CEP desejado no campo de entrada e pressione "Consultar".
+3. **Visualize o Endereço:** As informações do endereço, incluindo logradouro, complemento, bairro, localidade, UF e outros dados, serão exibidas na tela.
 
-O arquivo `env` contém a configuração da aplicação, incluindo a URL da API ViaCEP:
+### Tecnologias
 
-```
-API_URL=https://viacep.com.br/ws/
-```
+* **Backend:** Java, Spring Boot, Gson, Apache HttpClient
+* **Frontend:** Node.js, Express, EJS
+* **API:** ViaCEP
 
-### Observações
+### Deploy
 
-* A API ViaCEP não exige autenticação. 🔓
-* A aplicação valida o formato do CEP antes de realizar a consulta. 👮
-* Em caso de CEP inválido ou inexistente, a aplicação exibe uma mensagem de erro. ⚠️
-
-### Próximos Passos
-
-* Implementar a funcionalidade de pesquisa de CEP por endereço. 🔍
-* Adicionar um GUI para a aplicação. 🖼️
-* Integrar a aplicação com outras APIs de geolocalização. 🌎
+O projeto foi deployado no Railway, uma plataforma de hospedagem de aplicações web. A aplicação backend foi configurada como um serviço independente e a aplicação frontend foi configurada para acessar o backend utilizando a URL do serviço no Railway. 
 
 **Contribuições são bem-vindas!** 🎉
+
+Você pode contribuir com o projeto reportando problemas, sugerindo novas funcionalidades ou enviando código.
 
